@@ -1,0 +1,7 @@
+<h2>Tizimga kirish</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Kirish</button>
+</form>
+<p>Yangi foydalanuvchimisiz? <a href="{% url 'register' %}">Ro'yxatdan o'ting</a></p>
