@@ -110,6 +110,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Domenni ishonchli deb belgilash (BU JUDA MUHIM)
+CSRF_TRUSTED_ORIGINS = [
+    'https://chat-app.ziyodev.uz',
+]
+
+# Agar HTTPS ishlatsangiz bular ham kerak bo'ladi
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
