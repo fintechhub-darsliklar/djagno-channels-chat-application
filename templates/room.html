@@ -79,7 +79,7 @@
         const messagesContainer = document.getElementById('messages-container');
 
         const chatSocket = new WebSocket(
-            'ws://' + window.location.host + '/ws/chat/' + roomName + '/'
+            'wss://' + window.location.host + '/ws/chat/' + roomName + '/'
         );
 
         const scrollToBottom = () => {
