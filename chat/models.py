@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from users.models import CustomUser as User
 
 # Create your models here.
 
@@ -8,6 +8,9 @@ class Chat(models.Model):
     owner_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="owner_chat")
     friend_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="friend_chat")
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def get_opponent(self, user):
+        return self.friend_user if self.owner_user == user else self.owner_user
 
 
 class Messages(models.Model):

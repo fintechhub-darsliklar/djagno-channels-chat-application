@@ -78,15 +78,15 @@
         const chatWindow = document.getElementById('chat-window');
         const messagesContainer = document.getElementById('messages-container');
 
-        const chatSocket = new WebSocket(
-            'wss://' + window.location.host + '/ws/chat/' + roomName + '/'
+        const chatSocket2 = new WebSocket(
+            'wss://' + window.location.host + '/ws/chat/' + 'gr_' +roomName + '/'
         );
 
         const scrollToBottom = () => {
             chatWindow.scrollTop = chatWindow.scrollHeight;
         };
 
-        chatSocket.onmessage = function(e) {
+        chatSocket2.onmessage = function(e) {
             const data = JSON.parse(e.data);
             
             // MUAMMO SHU YERDA EDI: 
@@ -127,7 +127,7 @@
             scrollToBottom();
         };
 
-        chatSocket.onclose = function(e) {
+        chatSocket2.onclose = function(e) {
             console.error('Socket kutilmaganda yopildi');
         };
 
@@ -142,11 +142,12 @@
             const messageInputDom = document.querySelector('#chat-message-input');
             const message = messageInputDom.value;
             if(message.trim() !== "") {
-                chatSocket.send(JSON.stringify({
+                chatSocket2.send(JSON.stringify({
                     'message': message,
                     'username': userName,
                     'user_id': currentUserId, // ID ni yuboramiz
                     'chat_id': roomName,
+                    'action_type': "chat",
                 }));
                 messageInputDom.value = '';
             }

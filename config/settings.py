@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'chat',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -95,31 +96,23 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+AUTH_PASSWORD_VALIDATORS = []
 
 # Domenni ishonchli deb belgilash (BU JUDA MUHIM)
 CSRF_TRUSTED_ORIGINS = [
     'https://chat-app.ziyodev.uz',
 ]
 
+AUTH_USER_MODEL = 'users.CustomUser'
+
+
 # Agar HTTPS ishlatsangiz bular ham kerak bo'ladi
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 USE_X_FORWARDED_PORT = True
 
+SESSION_COOKIE_AGE = 1209600  # 2 hafta (soniyalarda)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

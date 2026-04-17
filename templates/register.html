@@ -1,7 +1,93 @@
-<h2>Ro'yxatdan o'tish</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Ro'yxatdan o'tish</button>
-</form>
-<p>Akkountingiz bormi? <a href="{% url 'login' %}">Kirish</a></p>
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ro'yxatdan o'tish - Telegram Style</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background-color: #f4f4f5; }
+        .tg-input:focus + .tg-label,
+        .tg-input:not(:placeholder-shown) + .tg-label {
+            transform: translateY(-20px) scale(0.85);
+            color: #3390ec;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div class="max-w-[420px] w-full text-center">
+        
+        <div class="mb-6 flex justify-center">
+            <div class="w-24 h-24 bg-[#3390ec] rounded-full flex items-center justify-center shadow-md">
+                <i class="fa-solid fa-user-plus text-white text-4xl"></i>
+            </div>
+        </div>
+
+        <h1 class="text-2xl font-semibold text-gray-900 mb-2">Yangi hisob yaratish</h1>
+        <p class="text-gray-500 text-sm mb-8 leading-relaxed">
+            Ma'lumotlaringizni kiriting va muloqotni boshlang.
+        </p>
+
+        <form method="post" class="space-y-6 bg-white p-8 rounded-2xl shadow-sm border border-gray-200 text-left">
+            {% csrf_token %}
+
+            {% if form.errors %}
+                <div class="bg-red-50 text-red-500 text-xs p-3 rounded-lg border border-red-100 mb-4">
+                    Iltimos, ma'lumotlarni to'g'ri kiriting!
+                </div>
+            {% endif %}
+
+            <div class="relative border-b-2 border-gray-200 focus-within:border-[#3390ec] transition-all py-1">
+                <input type="text" name="first_name" id="first_name" placeholder=" " required
+                    class="tg-input block w-full bg-transparent border-none py-2 text-[16px] outline-none focus:ring-0 peer">
+                <label for="first_name" 
+                    class="tg-label absolute left-0 top-2 text-gray-400 pointer-events-none transition-all duration-200 origin-left">
+                    Ismingiz
+                </label>
+            </div>
+
+            <div class="relative border-b-2 border-gray-200 focus-within:border-[#3390ec] transition-all py-1">
+                <input type="text" name="last_name" id="last_name" placeholder=" " required
+                    class="tg-input block w-full bg-transparent border-none py-2 text-[16px] outline-none focus:ring-0 peer">
+                <label for="last_name" 
+                    class="tg-label absolute left-0 top-2 text-gray-400 pointer-events-none transition-all duration-200 origin-left">
+                    Familiyangiz
+                </label>
+            </div>
+
+            <div class="relative border-b-2 border-gray-200 focus-within:border-[#3390ec] transition-all py-1">
+                <input type="text" name="username" id="username" placeholder=" " required
+                    class="tg-input block w-full bg-transparent border-none py-2 text-[16px] outline-none focus:ring-0 peer">
+                <label for="username" 
+                    class="tg-label absolute left-0 top-2 text-gray-400 pointer-events-none transition-all duration-200 origin-left">
+                    Foydalanuvchi nomi (@username)
+                </label>
+            </div>
+
+            <div class="relative border-b-2 border-gray-200 focus-within:border-[#3390ec] transition-all py-1">
+                <input type="password" name="password" id="password" placeholder=" " required
+                    class="tg-input block w-full bg-transparent border-none py-2 text-[16px] outline-none focus:ring-0 peer">
+                <label for="password" 
+                    class="tg-label absolute left-0 top-2 text-gray-400 pointer-events-none transition-all duration-200 origin-left">
+                    Parol yarating
+                </label>
+            </div>
+
+            <button type="submit" 
+                class="w-full bg-[#3390ec] hover:bg-[#2b7abd] text-white font-semibold py-3.5 rounded-xl transition-all uppercase tracking-wide text-sm mt-4 shadow-lg shadow-blue-100">
+                Ro'yxatdan o'tish
+            </button>
+        </form>
+
+        <div class="mt-8">
+            <p class="text-sm text-gray-500">
+                Akkountingiz bormi? 
+                <a href="{% url 'login_page' %}" class="text-[#3390ec] font-bold hover:underline uppercase tracking-tighter ml-1">Kirish</a>
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>
